@@ -5,7 +5,6 @@ package lecturaArchivos;
 // CÓMO PROGRAMAR EN J AVA . Séptima edición
 // fines educativos
 // Prueba de la clase ArchivoTexto.
-
 // Este programa lee un archivo de texto y muestra cada registro.
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -37,14 +36,29 @@ public class LeerArchivoTexto {
         try // lee registros del archivo, usando el objeto Scanner
         {
             while (entrada.hasNext()) {
-                String linea = entrada.nextLine();
-                // System.out.println(linea);
+                String linea = entrada.nextLine();//Sacar la linea de datos almacenados en el archivo
+                //System.out.println(linea);
+                double suma = 0.0;
                 ArrayList<String> linea_partes = new ArrayList<String>(Arrays.asList(linea.split(";")));
-                System.out.println(linea_partes);
 
-            } // fin de while
-        } // fin de try
-        catch (NoSuchElementException elementException) {
+                for (String s : linea_partes) {
+                    suma = suma + Double.parseDouble(s);
+
+                }
+
+                //System.out.println(linea_partes.get(0));
+//                for (int i = 0; i < linea_partes.size(); i++) {
+            
+            //System.out.println(linea_partes);
+            System.out.println("La suma es " + suma);
+   
+
+        
+        
+    } // fin de while
+
+} // fin de try
+catch (NoSuchElementException elementException) {
             System.err.println("El archivo no esta bien formado.");
             entrada.close();
             System.exit(1);
@@ -61,5 +75,6 @@ public class LeerArchivoTexto {
             entrada.close(); // cierra el archivo
         }
     } // fin del metodo cerrarArchivo
+
 } // fin de la clase LeerArchivoTexto
 
