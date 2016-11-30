@@ -1,0 +1,4 @@
+Andrea;Bustamante;10;15
+Lizbeth;Pacheco;5;8
+Ximena;Castillo;20;20
+Andres;Luciano;13;1

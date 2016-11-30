@@ -40,7 +40,7 @@ public class LeerArchivoTexto {
                 //System.out.println(linea);
                 double suma = 0.0;
                 ArrayList<String> linea_partes = new ArrayList<String>(Arrays.asList(linea.split(";")));
-
+                    System.out.println(linea_partes);
                 for (String s : linea_partes) {
                     suma = suma + Double.parseDouble(s);
 

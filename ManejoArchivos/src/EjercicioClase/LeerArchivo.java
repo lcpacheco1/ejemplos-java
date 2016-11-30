@@ -1,29 +1,28 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package EjercicioClase;
 
+// Ejemplo tomado del libro 
+// D EITEL , P AUL J. Y H ARVEY M. D EITEL
+// CÓMO PROGRAMAR EN J AVA . Séptima edición
+// fines educativos
+// Prueba de la clase ArchivoTexto.
+// Este programa lee un archivo de texto y muestra cada registro.
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.lang.IllegalStateException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
-/**
- *
- * @author SALAS
- */
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class LeerArchivo {
 
-  private Scanner entrada;
+    private Scanner entrada;
 
     // permite al usuario abrir el archivo
     public void abrirArchivo() {
         try {
-            entrada = new Scanner(new File("calificaciones2.txt"));
+            entrada = new Scanner(new File("calific.txt"));
         } // fin de try
         catch (FileNotFoundException fileNotFoundException) {
             System.err.println("Error al abrir el archivo.");
@@ -33,33 +32,32 @@ public class LeerArchivo {
 
     // lee registro del archivo
     public void leer_informacion() {
-            
-     System.out.println("Hola");
+        double[] arreglo = new double[4];
+        int c = 0;
         try // lee registros del archivo, usando el objeto Scanner
         {
             while (entrada.hasNext()) {
                 String linea = entrada.nextLine();//Sacar la linea de datos almacenados en el archivo
-                System.out.println(linea);
-               double suma = 0.0;
+
+                double suma = 0.0;
                 ArrayList<String> linea_partes = new ArrayList<String>(Arrays.asList(linea.split(";")));
+                suma = Integer.parseInt(linea_partes.get(2)) + Integer.parseInt(linea_partes.get(3));
+                suma = suma / 2;
+                arreglo[c] = suma;
+                //System.out.println(arreglo[c]);
+                System.out.printf("Promedio de calificaciones de %s %s es: %.2f\n", linea_partes.get(0), linea_partes.get(1), arreglo[c]);
+                c++;
 
-                for (String s : linea_partes) {
-                    suma = suma + Double.parseDouble(s);
-                  
-
+            } // fin de try
+            double nmenor = arreglo[0];
+            for (int i = 0; i < arreglo.length; i++) {
+                if (nmenor < arreglo[i]) {
+                    nmenor = arreglo[i];
                 }
 
-                //System.out.println(linea_partes.get(0));
-//                for (int i = 0; i < linea_partes.size(); i++) {
-            
-            //System.out.println(linea_partes);
-             System.out.println("La suma es " + suma/2);
-  
-         } // fin de while
-        
-
-    } // fin de try
-    catch (NoSuchElementException elementException) {
+            }
+            System.out.println("El mejor promedio es:" + nmenor);
+        } catch (NoSuchElementException elementException) {
             System.err.println("El archivo no esta bien formado.");
             entrada.close();
             System.exit(1);
@@ -77,6 +75,5 @@ public class LeerArchivo {
         }
     } // fin del metodo cerrarArchivo
 
-}
-
+} // fin de la clase LeerArchivoTexto
 
